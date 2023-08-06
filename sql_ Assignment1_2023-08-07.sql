@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.26)
 # Database: sql_ Assignment1
-# Generation Time: 2023-08-06 21:09:54 +0000
+# Generation Time: 2023-08-06 21:16:09 +0000
 # ************************************************************
 
 
@@ -20,32 +20,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table SalesPeople
+# Dump of table Customers
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `SalesPeople`;
+DROP TABLE IF EXISTS `Customers`;
 
-CREATE TABLE `SalesPeople` (
+CREATE TABLE `Customers` (
+  `Cnum` int(11) NOT NULL,
+  `Cname` varchar(50) NOT NULL,
+  `City` varchar(50) NOT NULL,
   `Snum` int(11) NOT NULL,
-  `Sname` varchar(50) NOT NULL,
-  `City` varchar(50) DEFAULT NULL,
-  `Comm` float DEFAULT NULL,
-  PRIMARY KEY (`Snum`),
-  UNIQUE KEY `Sname` (`Sname`)
+  PRIMARY KEY (`Cnum`),
+  KEY `Snum` (`Snum`),
+  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`Snum`) REFERENCES `SalesPeople` (`Snum`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `SalesPeople` WRITE;
-/*!40000 ALTER TABLE `SalesPeople` DISABLE KEYS */;
+LOCK TABLES `Customers` WRITE;
+/*!40000 ALTER TABLE `Customers` DISABLE KEYS */;
 
-INSERT INTO `SalesPeople` (`Snum`, `Sname`, `City`, `Comm`)
+INSERT INTO `Customers` (`Cnum`, `Cname`, `City`, `Snum`)
 VALUES
-	(1001,'Peel','London',12),
-	(1002,'Serres','SanJose',13),
-	(1003,'Axelrod','New york',10),
-	(1004,'Motika','London',11),
-	(1007,'Rafkin','Barcelona',15);
+	(2001,'Hoffman','London',1001),
+	(2002,'Giovanni','Rome',1003),
+	(2003,'Liu','SanJose',1002),
+	(2004,'Grass','Brelin',1002),
+	(2006,'Clemens','London',1001),
+	(2007,'Pereira','Rome',1004),
+	(2008,'Cisneros','Sanjose',1007);
 
-/*!40000 ALTER TABLE `SalesPeople` ENABLE KEYS */;
+/*!40000 ALTER TABLE `Customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
